@@ -8,7 +8,7 @@ export default function Error({ error }: { error: Error }) {
   const router = useRouter();
 
   useEffect(() => {
-    if (error && router) {
+    if (error && router && typeof router.push === "function") {
       router.push("/conversations");
     }
   }, [error, router]);
