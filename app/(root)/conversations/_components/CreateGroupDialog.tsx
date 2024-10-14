@@ -43,8 +43,6 @@ import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { z } from "zod";
 
-type Props = {};
-
 const CreateGroupFormSchema = z.object({
   name: z.string().min(1, { message: "Trường này không được để trống" }),
   members: z
