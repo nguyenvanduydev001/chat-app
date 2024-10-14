@@ -83,9 +83,12 @@ const CreateGroupDialog = () => {
         toast.success("Đã tạo nhóm!");
       })
       .catch((error) => {
-        error instanceof ConvexError
-          ? error.data
-          : "Đã xảy ra lỗi không mong muốn";
+        // Xử lý lỗi khi tạo nhóm
+        toast.error(
+          error instanceof ConvexError
+            ? error.data
+            : "Đã xảy ra lỗi không mong muốn"
+        );
       });
   };
 
@@ -124,7 +127,7 @@ const CreateGroupDialog = () => {
                   <FormItem>
                     <FormLabel>Tên</FormLabel>
                     <FormControl>
-                      <Input placeholder="Tên nhóm..." {...field}></Input>
+                      <Input placeholder="Tên nhóm..." {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -155,12 +158,15 @@ const CreateGroupDialog = () => {
                                 key={friend._id}
                                 className="flex items-center gap-2 w-full p-2"
                                 onCheckedChange={(checked) => {
-                                  if (checked) {
-                                    form.setValue("members", [
-                                      ...members,
-                                      friend._id,
-                                    ]);
-                                  }
+                                  // Thêm hoặc xóa thành viên khi chọn hoặc bỏ chọn
+                                  form.setValue(
+                                    "members",
+                                    checked
+                                      ? [...members, friend._id]
+                                      : members.filter(
+                                          (id) => id !== friend._id
+                                        )
+                                  );
                                 }}
                               >
                                 <Avatar className="w-8 h-8">
@@ -169,7 +175,7 @@ const CreateGroupDialog = () => {
                                     {friend.username.substring(0, 1)}
                                   </AvatarFallback>
                                 </Avatar>
-                                <h4 className="truncate ">{friend.username}</h4>
+                                <h4 className="truncate">{friend.username}</h4>
                               </DropdownMenuCheckboxItem>
                             );
                           })}
