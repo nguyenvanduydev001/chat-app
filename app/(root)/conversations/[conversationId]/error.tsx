@@ -8,7 +8,9 @@ export default function Error({ error }: { error: Error }) {
   const router = useRouter();
 
   useEffect(() => {
-    router.push("/conversations");
+    if (error && router) {
+      router.push("/conversations");
+    }
   }, [error, router]);
 
   return <ConversationFallback />;

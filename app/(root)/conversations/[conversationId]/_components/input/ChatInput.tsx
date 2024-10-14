@@ -43,7 +43,9 @@ const ChatInput = () => {
     },
   });
 
-  const handleInputChange = (event: any) => {
+  const handleInputChange = (
+    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const { value, selectionStart } = event?.target;
 
     if (selectionStart !== null) {
