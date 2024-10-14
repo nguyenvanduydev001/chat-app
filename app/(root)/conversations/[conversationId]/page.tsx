@@ -28,8 +28,6 @@ const ConversationPage = ({ params: { conversationId } }: Props) => {
 
   const [leaveGroupDialogOpen, setLeaveGroupDialogOpen] = useState(false);
 
-  const [callType, setCallType] = useState<"audio" | "video" | null>(null);
-
   return conversation === undefined ? (
     <div className="w-full h-full flex items-center justify-center">
       <Loader2 className="h-8 w-8" />
