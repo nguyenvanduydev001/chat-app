@@ -53,3 +53,10 @@ To get started with the project, follow these steps:
    ```bash
    npx convex dev
    ```
+
+## Demo
+Check out the live demo of the project: [Link to demo](https://demo1-chat-app.vercel.app/)
+
+---
+
+*Built with ❤️ by [Nguyễn Văn Duy]*
